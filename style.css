@@ -27,6 +27,24 @@ body {
 
 }
 
+#vinnerSide{
+    height: 651.33px;
+    width: 801.33px;
+    position: absolute;
+    top: 51.3px;
+    background-color: green;
+
+}
+
+#taperSide{
+    height: 651.33px;
+    width: 801.33px;
+    position: absolute;
+    top: 51.3px;
+    background-color: red;
+
+}
+
 #startKnapp{
     width: 20px;
     height: 30px;
@@ -37,6 +55,7 @@ body {
 #minCanvas{
     z-index: 1;
 }
+
 canvas {
     border: 1px, black, solid;
 
