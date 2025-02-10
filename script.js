@@ -4,16 +4,13 @@ document.getElementById("cover").style.visibility = "visible"
 function visCanvas(){
     document.getElementById("minCanvas").style.visibility = "visible"
     document.getElementById("cover").style.visibility = "hidden"
+    bakgrunnsMusikk.loop = true
+    bakgrunnsMusikk.volume = 0.05
+    bakgrunnsMusikk.play()
 }
 // LYD
 const bakgrunnsMusikk = new Audio('bakgrunnsmusikk.mp3')
 
-//TODO LAGE EN START KNAPP
-window.addEventListener('keydown', function() {
-    bakgrunnsMusikk.loop = true
-    bakgrunnsMusikk.volume = 0.05
-    bakgrunnsMusikk.play()
-})
 
 const jumpSound = new Audio('retro-jump.mp3')
 const runSound = new Audio("run.mp3")
