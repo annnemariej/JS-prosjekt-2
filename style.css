@@ -4,13 +4,45 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
 
 
 }
 
-canvas{
-    border: 1px,black,solid;
+#cover {
+    height: 651.33px;
+    width: 801.33px;
+    position: absolute;
+    top: 51.3px;
+    z-index: 2;
+    pointer-events: none;
+    background-color: black;
+
+    display: flex;
+
+}
+
+#startKnapp{
+    width: 20px;
+    height: 30px;
+    background-color: blueviolet;
+}
+
+#minCanvas{
+    z-index: 1;
+}
+canvas {
+    border: 1px, black, solid;
+
+    background-color: black;
+}
+
+#space {
+    height: 10px;
+    width: 100%;
 }
