@@ -16,8 +16,8 @@ const runSound = new Audio("run.mp3")
 
 const canvas = document.querySelector("canvas")
 const ctx = canvas.getContext("2d")
-canvas.width = 600
-canvas.height = 450
+canvas.width = 800
+canvas.height = 650
 
 // Lager spilleren
 const spiller = {
@@ -29,7 +29,7 @@ const spiller = {
     dx: 0, // Initialiser dx til 0
     dy: 0,
     gravity: 0.5,
-    jumpPower: -10, 
+    jumpPower: -7.94, 
     onGround: false,
     color: "blue", 
 }
@@ -42,10 +42,25 @@ function tegneSpiller() {
 ctx.lineWidth = 10
 
 // Plattformobjekter
-const platform2 = { x1: 600, y1: 300, x2: 300, y2: 350, color: "green" }
-const platform3 = { x1: 0, y1: 225, x2: 300, y2: 275, color: "pink" }
-const platform4 = { x1: 600, y1: 150, x2: 300, y2: 200, color: "purple" }
-const platform5 = { x1: 0, y1: 100, x2: 300, y2: 100, color: "red" } 
+const hopper0 = { x1: 310, y1: 597, x2: 370, y2: 597, color: "red" } //NEDERST width = 60  y=53 mindre enn platfprm x = x2 på den neste minus 90
+
+const hopper1 = { x1: 430, y1: 499, x2: 490, y2: 499, color: "red" }
+const platform1=  { x1: 400, y1: 544, x2: 800, y2: 544, color: "purple" }
+
+const hopper2={ x1: 310, y1: 375, x2: 370, y2: 375, color: "red" }
+const platform2 = {  x1: 0, y1: 438, x2: 400, y2: 438, color: "purple"  }
+
+const hopper3= {  x1: 430, y1: 269, x2: 490, y2: 269, color: "red"  }
+const platform3 = {  x1: 400, y1: 332, x2: 800, y2: 332, color: "purple"  }
+
+const hopper4={  x1: 310, y1: 163, x2: 370, y2: 163, color: "red"  }
+const platform4 = {  x1: 0, y1: 226, x2: 400, y2: 226, color: "purple"  }
+
+const hopper5={  x1: 300, y1: 55, x2: 360, y2: 55, color: "red"  }
+const platform5 = { x1:400, y1: 120, x2: 800, y2: 120, color: "purple" } 
+
+
+const platform6 = { x1: 0, y1: 75, x2: 270, y2: 75, color: "green" } //Der prinsissen og donkey er
 
 // Tegner en plattform
 function tegnLinje(platform) {
@@ -57,10 +72,19 @@ function tegnLinje(platform) {
     ctx.stroke();
 }
 
+tegnLinje(platform1)
 tegnLinje(platform2)
 tegnLinje(platform3)
 tegnLinje(platform4)
 tegnLinje(platform5)
+tegnLinje(platform6)
+tegnLinje(hopper0)
+tegnLinje(hopper1)
+tegnLinje(hopper2)
+tegnLinje(hopper3)
+tegnLinje(hopper4)
+tegnLinje(hopper5)
+
 
 function holderKeys(event) {
     if (event.key === "ArrowRight" || event.key === "d") {
@@ -76,6 +100,7 @@ function holderKeys(event) {
             jumpSound.play()
         }
     }
+    
 }
 
 function sluppetKey(event) {
@@ -109,10 +134,19 @@ function update() {
 
     // Tegn bakgrunnen og plattformene på nytt
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    tegnLinje(platform1)
     tegnLinje(platform2)
     tegnLinje(platform3)
     tegnLinje(platform4)
     tegnLinje(platform5)
+    tegnLinje(platform6)
+    tegnLinje(hopper0)
+    tegnLinje(hopper1)
+    tegnLinje(hopper2)
+    tegnLinje(hopper3)
+    tegnLinje(hopper4)
+    tegnLinje(hopper5)
+
 
     // Tegn spilleren
     tegneSpiller()
