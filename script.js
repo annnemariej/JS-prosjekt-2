@@ -62,6 +62,7 @@ const løperbakBilder = [
     "mario-runback-1.png",
 ]
 
+
 function tegneSpiller() {
     ctx.drawImage(spillerBilde, spiller.x, spiller.y, spiller.width, spiller.height);
 }
