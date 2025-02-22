@@ -3,10 +3,8 @@ document.getElementById("vinnerSide").style.visibility = "hidden"
 document.getElementById("taperSide").style.visibility = "hidden"
 document.getElementById("cover").style.visibility = "visible"
 document.getElementById("klokke").style.visibility = "hidden"
-//document.getElementById("credits").style.visibility="hidden"
 
-
-let ganger = 0
+let ganger = 0 //slik at startknappen kan bare trykkes en gnag
 function visCanvas() {
     if (ganger < 1) {
         document.getElementById("minCanvas").style.visibility = "visible"
@@ -21,8 +19,10 @@ function visCanvas() {
     }
 }
 
+
+// tid, max 40 sek på å klare spillet
 const klokkeElement = document.getElementById("klokke")
-let klokke = 30
+let klokke = 40
 
 function tikkKlokke() {
 
@@ -39,7 +39,7 @@ function tikkKlokke() {
 
 }
 
-
+//vunnet og tapt sidene
 function visVunnet() {
     document.getElementById("minCanvas").style.visibility = "hidden"
     document.getElementById("vinnerSide").style.visibility = "visible"
@@ -52,19 +52,19 @@ function visTapt() {
     document.getElementById("taperSide").style.visibility = "visible"
     document.getElementById("klokke").style.visibility = "hidden"
 }
+
 // LYD
 const bakgrunnsMusikk = new Audio('lyd/bakgrunnsmusikk.mp3')
-
-
 const jumpSound = new Audio('lyd/retro-jump.mp3')
 const runSound = new Audio("lyd/run.mp3")
 
+//canvas
 const canvas = document.querySelector("canvas")
 const ctx = canvas.getContext("2d")
 canvas.width = 800
 canvas.height = 650
 
-// Lager spilleren(mario) og animasjoner
+// Lager spilleren(mario) 
 const spiller = {
     x: 50,
     y: 640,
@@ -82,12 +82,11 @@ const spiller = {
 const spillerBilde = new Image()
 spillerBilde.src = "bilder/mario.png"
 
-
 function tegneSpiller() {
-    ctx.drawImage(spillerBilde, spiller.x, spiller.y, spiller.width, spiller.height);
+    ctx.drawImage(spillerBilde, spiller.x, spiller.y, spiller.width, spiller.height)
 }
 
-// LAGER KONGEY DONG  ANIMASJON
+// LAGER KONGEY DONG  og ANIMASJON
 const konkeyDong = {
     x: 25,
     y: 20,
@@ -96,7 +95,7 @@ const konkeyDong = {
 }
 
 const konkeyDongBilder = [
-    "bilder/konkey.png",  // placeholder bilder
+    "bilder/konkey.png",
     "bilder/konkey2.png",
 ]
 
@@ -110,12 +109,11 @@ function byttKonkeyBilde() {
     konkeyDongBilde.src = konkeyDongBilder[konkeyBildeIndex]
 }
 
-setInterval(byttKonkeyBilde, 350)
+setInterval(byttKonkeyBilde, 550)
 
 function tegnKonkeyDong() {
-    ctx.drawImage(konkeyDongBilde, konkeyDong.x, konkeyDong.y, konkeyDong.width, konkeyDong.height);
+    ctx.drawImage(konkeyDongBilde, konkeyDong.x, konkeyDong.y, konkeyDong.width, konkeyDong.height)
 }
-
 
 // LAGER PRINSESSE
 const prinsesse = {
@@ -126,7 +124,7 @@ const prinsesse = {
 }
 
 const prinsesseBilder = [
-    "bilder/prinsesse.png",  // Ikke riktige bilder, bare place holder
+    "bilder/prinsesse.png",
     "bilder/prinsesse2.jpg",
 ]
 
@@ -139,19 +137,45 @@ function byttBilde() {
     prinsesseBilde.src = prinsesseBilder[prinsbildeIndex]
 }
 
-//bytter bilde hvert 350ms
 setInterval(byttBilde, 350)
 
 function tegnPrinsesse() {
     ctx.drawImage(prinsesseBilde, prinsesse.x, prinsesse.y, prinsesse.width, prinsesse.height)
 }
+//LIV
 
+const livPosisjoner = [ //liv = hjerter
+    { x: canvas.width - 100, y: canvas.height - 40 },
+    { x: canvas.width - 60, y: canvas.height - 40 },
+    { x: canvas.width - 20, y: canvas.height - 40 },
+]
+let liv = 3
 
-//PLATFORMENE
+function tegnHjerte(x, y, farge) {
+    ctx.fillStyle = farge
+    ctx.beginPath()
+    ctx.moveTo(x, y + 10);
+    ctx.bezierCurveTo(x, y - 10, x - 15, y - 10, x - 15, y)
+    ctx.bezierCurveTo(x - 15, y + 15, x, y + 25, x, y + 30)
+    ctx.bezierCurveTo(x, y + 25, x + 15, y + 15, x + 15, y)
+    ctx.bezierCurveTo(x + 15, y - 10, x, y - 10, x, y + 10)
+    ctx.fill()
+}
+
+function tegnLiv() {
+    for (let i = 0; i < 3; i++) {
+        if (i < liv) {
+            tegnHjerte(livPosisjoner[i].x, livPosisjoner[i].y, "red") //gjenværende liv
+        } else {
+            tegnHjerte(livPosisjoner[i].x, livPosisjoner[i].y, "gray") // tapte liv
+        }
+    }
+}
+
+//PLATFORMENE OG PIGGENNE
 
 ctx.lineWidth = 10
 
-// Plattformobjekter
 const plattformer = [
     { x1: 400, y1: 544, x2: 800, y2: 544, color: "purple" }, //STØRRE PLATFORMER
     { x1: 0, y1: 438, x2: 400, y2: 438, color: "purple" },
@@ -167,10 +191,6 @@ const plattformer = [
     { x1: 300, y1: 55, x2: 360, y2: 55, color: "aqua" },
 ]
 
-const pigger = [
-
-]
-
 function tegnLinje(platform) {
     ctx.strokeStyle = platform.color
     ctx.lineWidth = 10
@@ -180,9 +200,6 @@ function tegnLinje(platform) {
     ctx.stroke()
 }
 
-function tegnTrekant(pigg) {
-
-}
 function kollisjonMedPlattform() {
     spiller.onGround = false
 
@@ -230,16 +247,68 @@ function sjekkKollisjon(spiller, prinsesse) {
         spiller.x + spiller.width > prinsesse.x &&
         spiller.y < prinsesse.y + prinsesse.height &&
         spiller.y + spiller.height > prinsesse.y
-    );
+    )
 }
 
+const pigger = [
+    { x: 500, y: 514, størrelse: 10 },
+    { x: 580, y: 514, størrelse: 10 },
+    { x: 50, y: 408, størrelse: 10 },
+    { x: 150, y: 408, størrelse: 10 },
+    { x: 550, y: 302, størrelse: 10 },
+    { x: 650, y: 302, størrelse: 10 },
+    { x: 100, y: 196, størrelse: 10 },
+    { x: 200, y: 196, størrelse: 10 },
+    { x: 520, y: 90, størrelse: 10 },
+    { x: 620, y: 90, størrelse: 10 },
+]
 
+function tegnTrekant(x, y, størrelse) {
+    ctx.fillStyle = "red"
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x - størrelse, y + størrelse * 2)
+    ctx.lineTo(x + størrelse, y + størrelse * 2)
+    ctx.closePath()
+    ctx.fill()
+}
+
+function tegnAllePigger() {
+    pigger.forEach(function (pigg) {
+        tegnTrekant(pigg.x, pigg.y, pigg.størrelse)
+    })
+}
+
+function sjekkKollisjonMedPigger() {
+    pigger.forEach(pigg => {
+        if (
+            spiller.x < pigg.x + pigg.størrelse &&
+            spiller.x + spiller.width > pigg.x &&
+            spiller.y < pigg.y + pigg.størrelse * 2 &&
+            spiller.y + spiller.height > pigg.y
+        ) {
+            liv-- // Mister ett liv
+            console.log("Mario traff en pigg. Liv igjen:", liv)
+            if (liv > 0) {
+                resetMario()
+            } else {
+                spilltapt()
+            }
+        }
+    })
+}
+
+function resetMario() {
+    spiller.x = 50
+    spiller.y = 640
+    spiller.dy = 0
+}
 
 function holderKeys(event) {
     if (event.key === "ArrowRight" || event.key === "d") {
         spiller.dx = spiller.speed
         runSound.play()
-        spillerBilde.src = "bilder/mariohøyre.png"
+        spillerBilde.src = "bilder/mariohoyre.jpg"
     } else if (event.key === "ArrowLeft" || event.key === "a") {
         spiller.dx = -spiller.speed
         runSound.play()
@@ -257,9 +326,9 @@ function holderKeys(event) {
 
 function sluppetKey(event) {
     if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "d" || event.key === "a") {
-        spiller.dx = 0;
+        spiller.dx = 0
         runSound.pause()
-        runSound.currentTime = 0;
+        runSound.currentTime = 0
         spillerBilde.src = "bilder/mario.png"
     }
 }
@@ -277,23 +346,25 @@ function update() {
     }
 
     kollisjonMedPlattform()
+    sjekkKollisjonMedPigger()
 
     if (spiller.x < 0) spiller.x = 0
     if (spiller.x + spiller.width > canvas.width) spiller.x = canvas.width - spiller.width
 
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     plattformer.forEach(tegnLinje)
+    tegnAllePigger()
     tegneSpiller()
     tegnPrinsesse()
     tegnKonkeyDong()
+    tegnLiv
 
     if (sjekkKollisjon(spiller, prinsesse)) {
         spillVunnet()
         return
     }
 
-
-    requestAnimationFrame(update);
+    requestAnimationFrame(update)
 }
 
 function spillVunnet() {
@@ -304,7 +375,7 @@ function spillVunnet() {
 }
 function spilltapt() {
     visTapt()
-    bakgrunnsMusikk.volume = 0;
+    bakgrunnsMusikk.volume = 0
 
 }
 
