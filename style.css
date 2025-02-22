@@ -10,6 +10,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 50px;
+    background-color: blue;
 
 
 }
@@ -20,7 +21,6 @@ body {
     position: absolute;
     top: 51.3px;
     z-index: 2;
-    pointer-events: none;
     background-color: black;
 
     display: flex;
@@ -45,20 +45,42 @@ body {
 
 }
 
+
 #startKnapp{
-    width: 20px;
-    height: 30px;
-    background-color: blueviolet;
+    width: 434px;
+    height: 62px;
+    background-image: url("bilder/startspill.png");
+    background-color: transparent;
     z-index: 100;
+    border: none;
+    position: absolute;
+    top: 474px;
+    left: 182px;
+}
+
+#vunnet{
+    background-image: url("bilder/duharvunnet.png");
+    width: 559px;
+    height: 61px;
+    background-color: transparent;
+    position: absolute;
+    top: 363px;
+    left: 124px;
+}
+
+#startigjenknapp{
+
 }
 
 #minCanvas{
     z-index: 1;
+
 }
 
 canvas {
     border: 1px, black, solid;
-
+    position: absolute;
+    top: 51.3px;
     background-color: black;
 }
 

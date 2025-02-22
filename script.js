@@ -2,15 +2,22 @@ document.getElementById("minCanvas").style.visibility = "hidden"
 document.getElementById("vinnerSide").style.visibility = "hidden"
 document.getElementById("taperSide").style.visibility="hidden"
 document.getElementById("cover").style.visibility = "visible"
+//document.getElementById("credits").style.visibility="hidden"
 
 
+let ganger = 0
 function visCanvas() {
+    if (ganger<1){
     document.getElementById("minCanvas").style.visibility = "visible"
     document.getElementById("cover").style.visibility = "hidden"
     bakgrunnsMusikk.loop = true
     bakgrunnsMusikk.volume = 0.05
     bakgrunnsMusikk.play()
+    ganger+=1
 }
+}
+
+
 
 function visVunnet() {
     document.getElementById("minCanvas").style.visibility = "hidden"
@@ -49,7 +56,7 @@ const spiller = {
     color: "blue",
 }
 
-const spillerBilde = new Image();
+const spillerBilde = new Image()
 spillerBilde.src = "bilder/mario.png"
 
 const løperframBilder = [
@@ -278,11 +285,13 @@ function update() {
 
 function spillVunnet() {
     visVunnet()
+    bakgrunnsMusikk.volume = 0.0
+
 }
 function spilltapt() {
 
 }
 
-window.addEventListener("keydown", holderKeys);
-window.addEventListener("keyup", sluppetKey);
-update();
+window.addEventListener("keydown", holderKeys)
+window.addEventListener("keyup", sluppetKey)
+update()

@@ -7,13 +7,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="startKnapp" onclick="visCanvas()"></button>
+
+
+
+    <div id="vinnerSide">
+        <div id="vunnet"></div>
+        <button id="startigjenKnapp"></button>
+    </div>
+    <div id="taperSide">
+        <button id="startigjenKnapp"></button>
+    </div>
     <div id="cover">
-    <div id="vinnerSide"></div>
-    <div id="taperSide"></div>
+       
+
+
         <video width="800" height="650" autoplay muted loop>
             <source src="video/konkeydongstart.mp4" type="video/mp4">
 
+        </video>
+
+    <button id="startKnapp" onclick="visCanvas()" onclick="antallGanger()"></button>
         
     </div>
     <canvas id="minCanvas"></canvas>
