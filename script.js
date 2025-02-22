@@ -4,6 +4,7 @@ document.getElementById("taperSide").style.visibility = "hidden"
 document.getElementById("cover").style.visibility = "visible"
 document.getElementById("klokke").style.visibility = "hidden"
 
+let spillAktivt = false
 let ganger = 0 //slik at startknappen kan bare trykkes en gnag
 function visCanvas() {
     if (ganger < 1) {
@@ -14,6 +15,7 @@ function visCanvas() {
         bakgrunnsMusikk.volume = 0.05
         bakgrunnsMusikk.play()
         ganger += 1
+        spillAktivt = true
 
         klokkeInterval = setInterval(tikkKlokke, 1000)
     }
@@ -305,6 +307,9 @@ function resetMario() {
 }
 
 function holderKeys(event) {
+
+    if (!spillAktivt) return
+
     if (event.key === "ArrowRight" || event.key === "d") {
         spiller.dx = spiller.speed
         runSound.play()
@@ -325,6 +330,8 @@ function holderKeys(event) {
 }
 
 function sluppetKey(event) {
+    if (!spillAktivt) return
+
     if (event.key === "ArrowRight" || event.key === "ArrowLeft" || event.key === "d" || event.key === "a") {
         spiller.dx = 0
         runSound.pause()
@@ -368,12 +375,14 @@ function update() {
 }
 
 function spillVunnet() {
+    spillAktivt = false
     visVunnet()
     clearInterval(klokkeInterval)
     bakgrunnsMusikk.volume = 0.0
 
 }
 function spilltapt() {
+    spillAktivt = false
     visTapt()
     bakgrunnsMusikk.volume = 0
 
