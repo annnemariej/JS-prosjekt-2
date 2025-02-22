@@ -357,7 +357,7 @@ function update() {
     tegneSpiller()
     tegnPrinsesse()
     tegnKonkeyDong()
-    tegnLiv
+    tegnLiv()
 
     if (sjekkKollisjon(spiller, prinsesse)) {
         spillVunnet()
