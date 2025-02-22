@@ -11,8 +11,6 @@ body {
     align-items: center;
     gap: 50px;
     background-color: lightslategray;
-
-
 }
 
 #cover {
@@ -22,9 +20,7 @@ body {
     top: 51.3px;
     z-index: 2;
     background-color: black;
-
     display: flex;
-
 }
 
 #vinnerSide {
@@ -33,7 +29,6 @@ body {
     position: absolute;
     top: 51.3px;
     background-color: black;
-
 }
 
 #taperSide {
@@ -42,9 +37,7 @@ body {
     position: absolute;
     top: 51.3px;
     background-color: black;
-
 }
-
 
 #startKnapp {
     width: 434px;
@@ -78,7 +71,7 @@ body {
     left: 208px;
 }
 
-#taptbilde{
+#taptbilde {
     background-image: url(bilder/tapt.png);
     height: 245px;
     width: 446px;
@@ -88,7 +81,6 @@ body {
     position: absolute;
     top: 57px;
     left: 212px;
-
 }
 
 
@@ -113,8 +105,6 @@ body {
     top: 478px;
     left: 238px;
     border: none;
-
-
 }
 
 #vinnbilde {
@@ -127,12 +117,10 @@ body {
     position: absolute;
     top: 57px;
     left: 212px;
-
 }
 
 #minCanvas {
     z-index: 1;
-
 }
 
 canvas {
