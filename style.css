@@ -68,7 +68,28 @@ body {
     left: 124px;
 }
 
-#startigjenknapp{
+#klokke {
+    height: 112px;
+    width: 180px;
+    font-family: 'Press Start 2P';
+    font-size: 10px;
+    color: white;
+    z-index: 1000;
+    position: absolute;
+    top: 77px;
+    left: 900px;
+}
+
+#startigjenKnapp{
+    width: 293px;
+    height: 45px;
+    background-image: url("bilder/spilligjen.png");
+    background-color: transparent;
+    position: absolute;
+    top: 478px;
+    left: 238px;
+    border: none;
+
 
 }
 

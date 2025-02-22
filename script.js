@@ -2,6 +2,7 @@ document.getElementById("minCanvas").style.visibility = "hidden"
 document.getElementById("vinnerSide").style.visibility = "hidden"
 document.getElementById("taperSide").style.visibility="hidden"
 document.getElementById("cover").style.visibility = "visible"
+document.getElementById("klokke").style.visibility="hidden"
 //document.getElementById("credits").style.visibility="hidden"
 
 
@@ -10,13 +11,33 @@ function visCanvas() {
     if (ganger<1){
     document.getElementById("minCanvas").style.visibility = "visible"
     document.getElementById("cover").style.visibility = "hidden"
+    document.getElementById("klokke").style.visibility="visible"
     bakgrunnsMusikk.loop = true
     bakgrunnsMusikk.volume = 0.05
     bakgrunnsMusikk.play()
     ganger+=1
+
+    klokkeInterval = setInterval(tikkKlokke, 1000)
 }
 }
 
+const klokkeElement = document.getElementById("klokke")
+let klokke = 20
+
+function tikkKlokke() {
+
+    klokke -= 1
+    klokkeElement.innerHTML = "Tid igjen: " + klokke + " sek"
+
+    if (klokke > 0) {
+        console.log("Klokka tikket. Nå er det igjen:", klokke)
+    }
+    else if (klokke <= 0) {
+        clearInterval(klokkeInterval)  // Stopp klokka når den når 0
+        spilltapt()
+    }
+
+}
 
 
 function visVunnet() {
@@ -28,6 +49,7 @@ function visVunnet() {
 function visTapt() {
     document.getElementById("minCanvas").style.visibility = "hidden"
     document.getElementById("taperSide").style.visibility = "visible"
+    document.getElementById("klokke").style.visibility = "hidden"
 }
 // LYD
 const bakgrunnsMusikk = new Audio('lyd/bakgrunnsmusikk.mp3')
@@ -285,11 +307,18 @@ function update() {
 
 function spillVunnet() {
     visVunnet()
+    clearInterval(klokkeInterval)
     bakgrunnsMusikk.volume = 0.0
 
 }
 function spilltapt() {
+   visTapt()
+    bakgrunnsMusikk.volume = 0;
 
+}
+
+function spilligjen(){
+    location.reload()
 }
 
 window.addEventListener("keydown", holderKeys)
