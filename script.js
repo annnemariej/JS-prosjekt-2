@@ -1,28 +1,28 @@
 document.getElementById("minCanvas").style.visibility = "hidden"
 document.getElementById("vinnerSide").style.visibility = "hidden"
-document.getElementById("taperSide").style.visibility="hidden"
+document.getElementById("taperSide").style.visibility = "hidden"
 document.getElementById("cover").style.visibility = "visible"
-document.getElementById("klokke").style.visibility="hidden"
+document.getElementById("klokke").style.visibility = "hidden"
 //document.getElementById("credits").style.visibility="hidden"
 
 
 let ganger = 0
 function visCanvas() {
-    if (ganger<1){
-    document.getElementById("minCanvas").style.visibility = "visible"
-    document.getElementById("cover").style.visibility = "hidden"
-    document.getElementById("klokke").style.visibility="visible"
-    bakgrunnsMusikk.loop = true
-    bakgrunnsMusikk.volume = 0.05
-    bakgrunnsMusikk.play()
-    ganger+=1
+    if (ganger < 1) {
+        document.getElementById("minCanvas").style.visibility = "visible"
+        document.getElementById("cover").style.visibility = "hidden"
+        document.getElementById("klokke").style.visibility = "visible"
+        bakgrunnsMusikk.loop = true
+        bakgrunnsMusikk.volume = 0.05
+        bakgrunnsMusikk.play()
+        ganger += 1
 
-    klokkeInterval = setInterval(tikkKlokke, 1000)
-}
+        klokkeInterval = setInterval(tikkKlokke, 1000)
+    }
 }
 
 const klokkeElement = document.getElementById("klokke")
-let klokke = 20
+let klokke = 30
 
 function tikkKlokke() {
 
@@ -43,6 +43,7 @@ function tikkKlokke() {
 function visVunnet() {
     document.getElementById("minCanvas").style.visibility = "hidden"
     document.getElementById("vinnerSide").style.visibility = "visible"
+    document.getElementById("klokke").style.visibility = "hidden"
 
 }
 
@@ -81,16 +82,6 @@ const spiller = {
 const spillerBilde = new Image()
 spillerBilde.src = "bilder/mario.png"
 
-const løperframBilder = [
-    "mario-run.png",
-    "mario-run-1.png", //har ikke tegnet bildene enda
-
-]
-const løperbakBilder = [
-    "mario-runback.png", //har ikke tegnet bildene enda
-    "mario-runback-1.png",
-]
-
 
 function tegneSpiller() {
     ctx.drawImage(spillerBilde, spiller.x, spiller.y, spiller.width, spiller.height);
@@ -98,20 +89,20 @@ function tegneSpiller() {
 
 // LAGER KONGEY DONG  ANIMASJON
 const konkeyDong = {
-    x: 30,  
-    y: 30,
+    x: 25,
+    y: 20,
     width: 50,
-    height: 40
+    height: 50,
 }
 
 const konkeyDongBilder = [
-    "bilder/prinsesse.png",  // placeholder bilder
-    "bilder/prinsesse2.png",
+    "bilder/konkey.png",  // placeholder bilder
+    "bilder/konkey2.png",
 ]
 
 let konkeyBildeIndex = 0
 const konkeyDongBilde = new Image()
-konkeyDongBilde.src = konkeyDongBilder[konkeyBildeIndex] 
+konkeyDongBilde.src = konkeyDongBilder[konkeyBildeIndex]
 
 // Funksjon for å bytte Konkey Dong-bilde
 function byttKonkeyBilde() {
@@ -128,7 +119,7 @@ function tegnKonkeyDong() {
 
 // LAGER PRINSESSE
 const prinsesse = {
-    x: 70,
+    x: 80,
     y: 30,
     width: 50,
     height: 40
@@ -136,12 +127,12 @@ const prinsesse = {
 
 const prinsesseBilder = [
     "bilder/prinsesse.png",  // Ikke riktige bilder, bare place holder
-    "bilder/prinsesse2.png",
+    "bilder/prinsesse2.jpg",
 ]
 
-let prinsbildeIndex = 0 
+let prinsbildeIndex = 0
 const prinsesseBilde = new Image()
-prinsesseBilde.src = prinsesseBilder[prinsbildeIndex] 
+prinsesseBilde.src = prinsesseBilder[prinsbildeIndex]
 
 function byttBilde() {
     prinsbildeIndex = (prinsbildeIndex + 1) % prinsesseBilder.length
@@ -248,11 +239,11 @@ function holderKeys(event) {
     if (event.key === "ArrowRight" || event.key === "d") {
         spiller.dx = spiller.speed
         runSound.play()
-        spillerBilde.src = "bilder/mario-run.png"
+        spillerBilde.src = "bilder/mariohøyre.png"
     } else if (event.key === "ArrowLeft" || event.key === "a") {
         spiller.dx = -spiller.speed
         runSound.play()
-        spillerBilde.src = "bilder/mario-runback.png"
+        spillerBilde.src = "bilder/mariovenstre.png"
     } else if (event.key === "ArrowUp" || event.key === "w") {
         if (spiller.onGround) {
             spiller.dy = spiller.jumpPower
@@ -312,12 +303,12 @@ function spillVunnet() {
 
 }
 function spilltapt() {
-   visTapt()
+    visTapt()
     bakgrunnsMusikk.volume = 0;
 
 }
 
-function spilligjen(){
+function spilligjen() {
     location.reload()
 }
 
